@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* ✅ Primary Color: #007BFF (Bright Blue)
+✅ Secondary Color: #F8F9FA (Light Grayish White)
+✅ Accent Color: #FFB400 (Warm Yellow for CTA Buttons) */
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+@theme {
+  --color-primary: #007bff;
+  --color-secondary: #f8f9fa;
+  --color-accent: #ffb400;
+}
