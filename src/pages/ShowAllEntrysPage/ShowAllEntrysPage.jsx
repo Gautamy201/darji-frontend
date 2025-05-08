@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import EntryTemplate from "../../components/EntryTemplate";
 import { MdSimCardDownload } from "react-icons/md";
 import axios from "axios";
+import * as XLSX from "xlsx";
 
 const ShowAllEntrysPage = () => {
   const apiUrl = import.meta.env.VITE_BACKEND_SERVER_URL;
@@ -36,6 +37,14 @@ const ShowAllEntrysPage = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const downloadExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(entries);
+    const workbook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, "darjiCameraInstallData");
+    XLSX.writeFile(workbook, "darji_Camera_Install_Data.xlsx");
   };
 
   useEffect(() => {
@@ -107,7 +116,10 @@ const ShowAllEntrysPage = () => {
 
       {/* --- create download button */}
       <div className="fixed right-[30px] bottom-[30px]">
-        <button className="active:scale-[0.9] transition-all duration-200">
+        <button
+          className="active:scale-[0.9] transition-all duration-200"
+          onClick={downloadExcel}
+        >
           <MdSimCardDownload size={50} />
         </button>
       </div>
